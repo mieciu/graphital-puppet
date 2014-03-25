@@ -1,6 +1,6 @@
 # Graphital-puppet
 
-WARNING -> THIS MODULE IS STILL UNDER DEVELOPMENT & TESTING, please wait with usage until the removal of this line:)
+WARNING -> THIS MODULE IS STILL UNDER DEVELOPMENT & TESTING, please wait with usage until the removal of this line :smile:
 
 This is my own module to deploy Graphital (https://github.com/rashidkpc/graphital) in easiest way possible.
 
@@ -13,7 +13,7 @@ First, I'm working on seamless deployment of simpliest installation, providing o
 
 `
 graphital{ 'gogogo':
-  graphite_host => 'graphite.mydomain.com',
+  graphite_host => 'graphite.mydomain.com', 
   graphite_port => '31337',
   graphite_prefix => 'com.mydomain.frontends.$::hostname',
   polling_interval => '30'
