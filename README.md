@@ -20,5 +20,5 @@ graphital{ 'gogogo':
 }
 `
 
-But in the closest future possible I would like to support various configuration files location, selection between either Upstart or daemons gem, ...
+But in the closest future possible I would like to support various configuration files location, selection between either Upstart or daemons gem, support multiple distros (not only debian/ubuntu), and introduce puppet-lint...
 

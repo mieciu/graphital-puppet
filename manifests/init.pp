@@ -35,7 +35,19 @@
 #
 # Copyright 2014 Your name here, unless otherwise noted.
 #
-class graphital {
+class graphital ( 
+  $graphite_host, 
+  $graphite_port, 
+  $graphite_prefix, 
+  $polling_interval
+) {
+
+$package_dependencies = [ "git", "sysstat", "ruby" ]
+package { $package_dependencies: ensure => "installed" }
+
+exec { 'cloning repository':
+  command => "git clone https://github.com/rashidkpc/graphital.git /opt/graphital"
+}
 
 
 }
