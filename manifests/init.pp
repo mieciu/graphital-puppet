@@ -50,10 +50,19 @@ exec { 'cloning repository':
   command => "git clone https://github.com/rashidkpc/graphital.git /opt/graphital"
 } ->
 package { 'daemons':
-    ensure   => 'installed',
-    provider => 'gem',
+  ensure   => 'installed',
+  provider => 'gem',
 }
 # Edit the configfile
+augeas { "graphital_config":
+  context => "/opt/graphital/graphital.conf",
+  changes => [
+    "set $HOST ",
+    "set $PORT",
+    "set $PREFIX",
+    "set $INTERVAL",
+  ],
+}
 
 # run dat beast :> 
 
