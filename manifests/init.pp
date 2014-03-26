@@ -44,10 +44,16 @@ class graphital (
 
 $package_dependencies = [ "git", "sysstat", "ruby" ]
 package { $package_dependencies: ensure => "installed" }
+#packages as virtual resources a must!
 
 exec { 'cloning repository':
   command => "git clone https://github.com/rashidkpc/graphital.git /opt/graphital"
+} ->
+exec { 'gem install':
+  command => "gem install daemons"
 }
+# Edit the configfile
 
+# run dat beast :> 
 
 }
