@@ -49,8 +49,9 @@ package { $package_dependencies: ensure => "installed" }
 exec { 'cloning repository':
   command => "git clone https://github.com/rashidkpc/graphital.git /opt/graphital"
 } ->
-exec { 'gem install':
-  command => "gem install daemons"
+package { 'daemons':
+    ensure   => 'installed',
+    provider => 'gem',
 }
 # Edit the configfile
 
