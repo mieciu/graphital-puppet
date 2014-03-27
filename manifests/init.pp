@@ -63,7 +63,9 @@ augeas { "graphital_config":
     "set \$INTERVAL $polling_interval",
   ],
 }
-
-# run dat beast :> 
+~> # run dat beast :> 
+exec{ 'run daemon': 
+  command => "ruby /opt/graphital/daemon.rb start",
+}
 
 }
