@@ -67,5 +67,8 @@ augeas { "graphital_config":
 exec{ 'run daemon': 
   command => "ruby /opt/graphital/daemon.rb start",
 }
+#
+# bezsens, może lepiej byloby przez upstart , init whatever
+
 
 }
