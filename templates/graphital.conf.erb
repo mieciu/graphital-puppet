@@ -1,4 +1,7 @@
-#$HOST = 'graphite.vvmedia.com' <%= @graphite_host %>
+# This is a upstart configfile
+#
+# <%= @graphite_host %>
+ 
 description     "send system vitals to graphite"
 
 start on runlevel [2345]
