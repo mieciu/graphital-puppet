@@ -46,13 +46,17 @@ $package_dependencies = [ "git", "sysstat", "ruby" ]
 package { $package_dependencies: ensure => "installed" }
 #packages as virtual resources a must!
 
-exec { 'cloning repository':
-  command => "git clone https://github.com/rashidkpc/graphital.git /opt/graphital"
-} ->
-package { 'daemons':
-  ensure   => 'installed',
-  provider => 'gem',
+vcsrepo { "/opt/graphital/":
+  ensure => present,
+  provider => git,
+  source => "git://github.com/rashidkpc/graphital.git"
 }
+
+
+#package { 'daemons':
+#  ensure   => 'installed',
+#  provider => 'gem',
+#}
 # Edit the configfile
 augeas { "graphital_config":
   context => "/opt/graphital/graphital.conf",
