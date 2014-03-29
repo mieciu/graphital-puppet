@@ -1,16 +1,9 @@
-# Your graphite host
-$HOST = 'graphite.vvmedia.com' <%= @graphite_host %>
+#$HOST = 'graphite.vvmedia.com' <%= @graphite_host %>
+description     "send system vitals to graphite"
 
-# Graphite port
-$PORT = 2003
+start on runlevel [2345]
+stop on runlevel [!2345]
 
-# Interval at which to run modules. This should be greater
-# than the time it takes all modules to run. Modules run
-# in parallel.
-$INTERVAL = 10
+respawn
 
-# Path to directory of modules
-$PATH = '/opt/graphital/graphital.d'
-
-# Prefix to attach before graph name
-$PREFIX = 'graphital.'+`hostname`.chomp
+exec /usr/bin/ruby /opt/graphital/graphital.rb

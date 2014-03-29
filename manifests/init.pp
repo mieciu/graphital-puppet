@@ -44,20 +44,13 @@ class graphital (
 
 $package_dependencies = [ "git", "sysstat", "ruby" ]
 package { $package_dependencies: ensure => "installed" }
-#packages as virtual resources a must!
-
+->
 vcsrepo { "/opt/graphital/":
   ensure => present,
   provider => git,
   source => "git://github.com/rashidkpc/graphital.git"
 }
-
-
-#package { 'daemons':
-#  ensure   => 'installed',
-#  provider => 'gem',
-#}
-# Edit the configfile
+->
 augeas { "graphital_config":
   context => "/opt/graphital/graphital.conf",
   changes => [
@@ -67,11 +60,20 @@ augeas { "graphital_config":
     "set \$INTERVAL $polling_interval",
   ],
 }
-# configure Upstart here, so that service can be easily managed with
-
+->
+file { 'upstart configfile':
+  path    => "/etc/init/graphital.conf",
+  ensure  => file,
+  owner   => 0,
+  group   => 0,
+  mode    => '0644',
+  content => template(graphital/graphital.conf.erb),
+}
+~>
 service{ 'graphital':
   ensure => "running",
   provider => "upstart",
 }
+
 
 }
