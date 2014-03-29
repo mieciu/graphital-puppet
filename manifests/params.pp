@@ -1,10 +1,5 @@
 class graphital::params {
 
-  $graphite_host 	= ''
-  $graphite_port 	= ''
-  $graphite_prefix 	= '' 
-  $polling_interval	= ''
-
   case $::osfamily {
     'Debian': {
       $custom_set = 'Best One'
