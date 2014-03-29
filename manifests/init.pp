@@ -63,12 +63,11 @@ augeas { "graphital_config":
     "set \$INTERVAL $polling_interval",
   ],
 }
-~> # run dat beast :> 
-exec{ 'run daemon': 
-  command => "ruby /opt/graphital/daemon.rb start",
-}
-#
-# bezsens, może lepiej byloby przez upstart , init whatever
+# configure Upstart here, so that service can be easily managed with
 
+service{ 'graphital':
+  ensure => "running",
+  provider => "upstart",
+}
 
 }
