@@ -36,19 +36,44 @@
 # Copyright 2014 Your name here, unless otherwise noted.
 #
 class graphital ( 
-  $graphite_server	= $graphital::params::graphite_server, 
-  $graphite_port	= $graphital::params::graphite_port, 
-  $graphite_prefix	= $graphital::params::graphite_prefix, 
-  $polling_interval	= $graphital::params::polling_interval, 
-) inherits graphital::params {
+  $graphite_host, 
+  $graphite_port, 
+  $graphite_prefix, 
+  $polling_interval
+) {
 
-  ## @TODO
-  # puppet stdlib validate (stings, validate_re for graphite prefix)
+$package_dependencies = [ "git", "sysstat", "ruby" ]
+package { $package_dependencies: ensure => "installed" }
+->
+vcsrepo { "/opt/graphital/":
+  ensure => present,
+  provider => git,
+  source => "git://github.com/rashidkpc/graphital.git"
+}
+->
+augeas { "graphital_config":
+  context => "/opt/graphital/graphital.conf",
+  changes => [
+    "set \$HOST $graphite_host",
+    "set \$PORT $graphite_port",
+    "set \$PREFIX $graphite_prefix",
+    "set \$INTERVAL $polling_interval",
+  ],
+}
+->
+file { 'upstart configfile':
+  path    => "/etc/init/graphital.conf",
+  ensure  => file,
+  owner   => 0,
+  group   => 0,
+  mode    => '0644',
+  content => template(graphital/graphital.conf.erb),
+}
+~>
+service{ 'graphital':
+  ensure => "running",
+  provider => "upstart",
+}
 
-  anchor { 'graphital::begin': } ->
-  class { '::graphital::install': } ->
-  class { '::graphital::config': } ~>
-  class { '::graphital::service': } ->
-  anchor { 'graphital::end': }
 
 }
