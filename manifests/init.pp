@@ -29,11 +29,11 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Przemek Hejman <przemyslaw.hejman@gmail.com>
 #
 # === Copyright
 #
-# Copyright 2014 Your name here, unless otherwise noted.
+# Copyright 2014 Przemek Hejman.
 #
 class graphital ( 
   $graphite_server	= $graphital::params::graphite_server, 
