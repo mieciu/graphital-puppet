@@ -1,5 +1,9 @@
 class graphital::params {
 
+  # @TODO -> This class is only a placeholder right now 
+  #          but it will deal with upstart, strange package names
+  #          and other distro-specific things
+  
   case $::osfamily {
     'Debian': {
       $custom_set = 'Best One'
