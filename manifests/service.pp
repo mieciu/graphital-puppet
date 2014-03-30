@@ -8,6 +8,14 @@ class graphital::service inherits graphital {
     'daemonize': { fail("Sorry, $daemonize_method is not supported yet.") }
     'cron':      { fail("Sorry, $daemonize_method is not supported yet.") }
     default: {   # Upstart is the default method :)
+      file { 'upstart configfile':
+        path    => "/etc/init/graphital.conf",
+	ensure  => file,
+	owner   => 0,
+	group   => 0,
+	mode    => '0644',
+	content => template(graphital/graphital.conf.erb),
+      } ->
       service{ 'graphital':
         ensure => "running",
         provider => "upstart",

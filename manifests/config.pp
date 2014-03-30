@@ -9,15 +9,5 @@ class graphital::config inherits graphital {
       "set \$INTERVAL $polling_interval",
     ],
   }
-  ->
-  file { 'upstart configfile':
-    path    => "/etc/init/graphital.conf",
-    ensure  => file,
-    owner   => 0,
-    group   => 0,
-    mode    => '0644',
-    content => template(graphital/graphital.conf.erb),
-  }
-  
 
 }
