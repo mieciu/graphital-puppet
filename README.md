@@ -27,7 +27,6 @@ graphital{ 'gogogo':
   graphite_port         => '31337',
   graphite_prefix       => 'com.mydomain.frontends.$::hostname',
   polling_interval      => '30',
-  graphital_config_file => '/etc/graphital.conf',
   daemonize_method      => 'upstart'
 }
 ```
