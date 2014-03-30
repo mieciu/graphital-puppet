@@ -1,5 +1,7 @@
 class graphital::params {
 
+  if $polling_interval == undef { $polling_interval = '30' } 
+
   # @TODO -> This class is only a placeholder right now 
   #          but it will deal with upstart, strange package names
   #          and other distro-specific things
