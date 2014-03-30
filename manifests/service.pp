@@ -5,8 +5,8 @@ class graphital::service inherits graphital {
   #          (like running with ruby-deamonize rather than upstart)
 
   case $daemonize_method {
-    'daemonize': { fail("Sorry, $daemonize_method is not supported yet.") }
-    'cron':      { fail("Sorry, $daemonize_method is not supported yet.") }
+    'daemonize': { fail("Sorry, ${daemonize_method} is not supported yet.") }
+    'cron':      { fail("Sorry, ${daemonize_method} is not supported yet.") }
     default: {   # Upstart is the default method :)
       file { 'upstart configfile':
         path    => "/etc/init/graphital.conf",
