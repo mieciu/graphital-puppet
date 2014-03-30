@@ -36,10 +36,11 @@
 # Copyright 2014 Przemek Hejman.
 #
 class graphital ( 
-  $graphite_server	= $graphital::params::graphite_server, 
-  $graphite_port	= $graphital::params::graphite_port, 
-  $graphite_prefix	= $graphital::params::graphite_prefix, 
-  $polling_interval	= $graphital::params::polling_interval, 
+  $graphite_server, 
+  $graphite_port, 
+  $graphite_prefix, 
+  $polling_interval, 
+  $custom_setting = $graphital::params::custom_set,
 ) inherits graphital::params {
 
   ## @TODO
