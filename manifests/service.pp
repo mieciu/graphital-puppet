@@ -4,9 +4,14 @@ class graphital::service inherits graphital {
   #          chosen by user, proper things will be set
   #          (like running with ruby-deamonize rather than upstart)
 
-  service{ 'graphital':
-    ensure => "running",
-    provider => "upstart",
+  case $daemonize_method {
+    'daemonize': { fail("Sorry, $daemonize_method is not supported yet.") }
+    'cron':      { fail("Sorry, $daemonize_method is not supported yet.") }
+    default: {   # Upstart is the default method :)
+      service{ 'graphital':
+        ensure => "running",
+        provider => "upstart",
+      }
+    }   
   }
-
 }
