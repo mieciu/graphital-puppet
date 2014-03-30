@@ -4,8 +4,7 @@ class graphital::install inherits graphital {
   
   package { $package_dependencies: 
     ensure => 'installed' 
-  }
-  ->
+  } ->
   vcsrepo { "/opt/graphital/":
     ensure => present,
     provider => git,
