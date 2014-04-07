@@ -22,7 +22,7 @@ class graphital::params {
            $custom_set = 'Fun in late 90s'
 	 }
 	 default: {
-	   fail("OMG Please tell me WHAT IS THIS")
+	   fail("OMG Please tell me WHAT LINUX FLAVOUR IS THIS")
 	 }
     }
     default: {
